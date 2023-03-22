@@ -1,0 +1,15 @@
+{
+  "name": "project-yard-sale-fullpage",
+  "version": "1.0.0",
+  "description": "attempt to use api",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hugo Gutierrez",
+  "license": "MIT",
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "node-fetch": "^3.3.1"
+  }
+}
