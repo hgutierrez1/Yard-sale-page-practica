@@ -7,14 +7,16 @@ const mobilemenuicon = document.querySelector('.menu-icon');
 const mobilemenu = document.querySelector('.mobile-menu');
 const productData=document.querySelector('.product-data');
 
+/* var for listeners for categories */
+const all=document.querySelector('#all');
+const clothes=document.querySelector('#clothes');
+const electronics=document.querySelector('#electronics');
+const furniture=document.querySelector('#furniture');
+const toys=document.querySelector('#toys');
+const others=document.querySelector('#others');
+/* end var for listeners for categories */
 
-/* experimental */ 
-
-
-
-
-/* fin experimental */
-/*VARIABLE API PART */
+/*fetch for ALL category,starting one */
 const API = 'https://api.escuelajs.co/api/v1/products';
 const product_object = null || document.querySelector('.cards-container');
 const options = {
@@ -30,7 +32,7 @@ async function fetchproducts(url){
     return data;
 }
 
-(async()=>{
+async function fetchall(){
     try {
         const products=await fetchproducts(API);
 
@@ -39,7 +41,7 @@ async function fetchproducts(url){
             
         prodct=>`
         <div class="product-card" id="${prodct.id}">
-            <img src=${prodct.category.image} alt="${prodct.title}" class="product">
+            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
             <div class="product-info">
             <div>
                 <p>$${prodct.price}</p>
@@ -61,7 +63,169 @@ async function fetchproducts(url){
     } catch(error){
         alert("something wrong")
     }
-})();
+};
+
+async function fetchclothes(){
+    try {
+        const products=await fetchproducts('https://api.escuelajs.co/api/v1/categories/1/products');
+
+        let producto=`
+        ${products.map(
+            
+        prodct=>`
+        <div class="product-card" id="${prodct.id}">
+            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
+            <div class="product-info">
+            <div>
+                <p>$${prodct.price}</p>
+                <p>${prodct.title}</p>
+            </div>
+            <figure>
+                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+            </figure>
+            </div>
+        </div>
+        `).join('')}
+        `;
+        /* adding event listener */
+        product_object.innerHTML=producto;
+        const product=document.querySelectorAll('.product-card');
+        product.forEach(prod=>prod.addEventListener('click',openproductData));
+        /* fin add event listener */
+        
+    } catch(error){
+        alert("something wrong")
+    }
+};
+async function fetchelectronics(){
+    try {
+        const products=await fetchproducts('https://api.escuelajs.co/api/v1/categories/2/products');
+
+        let producto=`
+        ${products.map(
+            
+        prodct=>`
+        <div class="product-card" id="${prodct.id}">
+            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
+            <div class="product-info">
+            <div>
+                <p>$${prodct.price}</p>
+                <p>${prodct.title}</p>
+            </div>
+            <figure>
+                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+            </figure>
+            </div>
+        </div>
+        `).join('')}
+        `;
+        /* adding event listener */
+        product_object.innerHTML=producto;
+        const product=document.querySelectorAll('.product-card');
+        product.forEach(prod=>prod.addEventListener('click',openproductData));
+        /* fin add event listener */
+        
+    } catch(error){
+        alert("something wrong")
+    }
+};
+async function fetchfurniture(){
+    try {
+        const products=await fetchproducts('https://api.escuelajs.co/api/v1/categories/3/products');
+
+        let producto=`
+        ${products.map(
+            
+        prodct=>`
+        <div class="product-card" id="${prodct.id}">
+            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
+            <div class="product-info">
+            <div>
+                <p>$${prodct.price}</p>
+                <p>${prodct.title}</p>
+            </div>
+            <figure>
+                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+            </figure>
+            </div>
+        </div>
+        `).join('')}
+        `;
+        /* adding event listener */
+        product_object.innerHTML=producto;
+        const product=document.querySelectorAll('.product-card');
+        product.forEach(prod=>prod.addEventListener('click',openproductData));
+        /* fin add event listener */
+        
+    } catch(error){
+        alert("something wrong")
+    }
+};
+async function fetchtoys(){
+    try {
+        const products=await fetchproducts('https://api.escuelajs.co/api/v1/categories/4/products');
+
+        let producto=`
+        ${products.map(
+            
+        prodct=>`
+        <div class="product-card" id="${prodct.id}">
+            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
+            <div class="product-info">
+            <div>
+                <p>$${prodct.price}</p>
+                <p>${prodct.title}</p>
+            </div>
+            <figure>
+                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+            </figure>
+            </div>
+        </div>
+        `).join('')}
+        `;
+        /* adding event listener */
+        product_object.innerHTML=producto;
+        const product=document.querySelectorAll('.product-card');
+        product.forEach(prod=>prod.addEventListener('click',openproductData));
+        /* fin add event listener */
+        
+    } catch(error){
+        alert("something wrong")
+    }
+};
+async function fetchothers(){
+    try {
+        const products=await fetchproducts('https://api.escuelajs.co/api/v1/categories/5/products');
+
+        let producto=`
+        ${products.map(
+            
+        prodct=>`
+        <div class="product-card" id="${prodct.id}">
+            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
+            <div class="product-info">
+            <div>
+                <p>$${prodct.price}</p>
+                <p>${prodct.title}</p>
+            </div>
+            <figure>
+                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+            </figure>
+            </div>
+        </div>
+        `).join('')}
+        `;
+        /* adding event listener */
+        product_object.innerHTML=producto;
+        const product=document.querySelectorAll('.product-card');
+        product.forEach(prod=>prod.addEventListener('click',openproductData));
+        /* fin add event listener */
+        
+    } catch(error){
+        alert("something wrong")
+    }
+};
+fetchall()
 /* fin variable API */
 
 arrowdown.addEventListener("click",togledesktopMenu);
@@ -69,6 +233,14 @@ email.addEventListener('click',togledesktopMenu);
 carritocompra.addEventListener('click',togglelistacarrito)
 mobilemenuicon.addEventListener('click',togglemenumobile);
 
+/* listeners for categories */
+    all.addEventListener('click',fetchall);
+    clothes.addEventListener('click',fetchclothes);
+    electronics.addEventListener('click',fetchelectronics);
+    furniture.addEventListener('click',fetchfurniture);
+    toys.addEventListener('click',fetchtoys);
+    others.addEventListener('click',fetchothers);
+/* end listeners for categories */
 
 
 function togledesktopMenu(){
@@ -94,7 +266,7 @@ async function openproductData(){
 
     const data = `
     <img src="./assets/icons/icon_close.png" alt="close" class="close-button">
-    <img src="${info.category.image}" alt="${info.title}" class="product2">
+    <img src="${info.images[0]}" alt="${info.title}" class="product2">
     <div class="product-info2">
         <p>$${info.price}</p>
         <p>${info.title}</p>
