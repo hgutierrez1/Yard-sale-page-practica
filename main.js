@@ -1,3 +1,24 @@
+/* let emailuser = undefined
+const sign = document.querySelector('.sign')
+
+if (window.location.pathname === '/clase3.html') {
+    emailuser=document.querySelector('.input-email').value;
+    alert(emailuser)
+    
+}
+
+if (window.location.pathname === '/index.html') {
+    if (emailuser!=undefined){
+        alert(emailuser)
+        email.innerHTML=emailuser
+        email.classList.remove('inactive');
+        arrowdown.classList.remove('inactive');
+        sign.classList.add('inactive')
+    }
+}
+ */
+
+
 const email=document.querySelector('.navabar-email')
 const arrowdown=document.querySelector(".arrowdown");
 const desktopMenu=document.querySelector(".desktop-menu");
@@ -6,6 +27,11 @@ const listacarrito=document.querySelector('.product-detail');
 const mobilemenuicon = document.querySelector('.menu-icon');
 const mobilemenu = document.querySelector('.mobile-menu');
 const productData=document.querySelector('.product-data');
+
+const productdetail=document.querySelector('.shopping-cart-container')
+const totalcost=document.querySelector('#total')
+
+
 
 /* var for listeners for categories */
 const all=document.querySelector('#all');
@@ -17,6 +43,10 @@ const others=document.querySelector('#others');
 /* end var for listeners for categories */
 
 /*fetch for ALL category,starting one */
+
+let arrcartobject=[];
+let data2 = []
+
 const API = 'https://api.escuelajs.co/api/v1/products';
 const product_object = null || document.querySelector('.cards-container');
 const options = {
@@ -31,39 +61,45 @@ async function fetchproducts(url){
     const data= await answer.json();
     return data;
 }
-
 async function fetchall(){
     try {
         const products=await fetchproducts(API);
-
+    
         let producto=`
         ${products.map(
             
-        prodct=>`
-        <div class="product-card" id="${prodct.id}">
-            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
-            <div class="product-info">
-            <div>
-                <p>$${prodct.price}</p>
-                <p>${prodct.title}</p>
+            prodct=>`
+            <div class="product-card" >
+                <img src=${prodct.images[0]} alt="${prodct.title}" class="product" id="${prodct.id}">
+                <div class="product-info">
+                <div>
+                    <p>$${prodct.price}</p>
+                    <p>${prodct.title}</p>
+                </div>
+                <figure class="add-cart" id="${prodct.id}D">
+                    <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+                </figure>
+                </div>
             </div>
-            <figure>
-                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
-            </figure>
-            </div>
-        </div>
-        `).join('')}
-        `;
-        /* adding event listener */
-        product_object.innerHTML=producto;
-        const product=document.querySelectorAll('.product-card');
-        product.forEach(prod=>prod.addEventListener('click',openproductData));
-        /* fin add event listener */
+            `).join('')}
+            `;
+            /* adding event listener */
+            product_object.innerHTML=producto;
+            const product=document.querySelectorAll('.product');
+            const addcart=document.querySelectorAll('.add-cart');
+            product.forEach(prod=>prod.addEventListener('click',openproductData));
+            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            /* fin add event listener */
+
         
     } catch(error){
         alert("something wrong")
     }
 };
+
+fetchall()
+
+
 
 async function fetchclothes(){
     try {
@@ -72,26 +108,28 @@ async function fetchclothes(){
         let producto=`
         ${products.map(
             
-        prodct=>`
-        <div class="product-card" id="${prodct.id}">
-            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
-            <div class="product-info">
-            <div>
-                <p>$${prodct.price}</p>
-                <p>${prodct.title}</p>
+            prodct=>`
+            <div class="product-card" >
+                <img src=${prodct.images[0]} alt="${prodct.title}" class="product" id="${prodct.id}">
+                <div class="product-info">
+                <div>
+                    <p>$${prodct.price}</p>
+                    <p>${prodct.title}</p>
+                </div>
+                <figure class="add-cart" id="${prodct.id}D">
+                    <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+                </figure>
+                </div>
             </div>
-            <figure>
-                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
-            </figure>
-            </div>
-        </div>
-        `).join('')}
-        `;
-        /* adding event listener */
-        product_object.innerHTML=producto;
-        const product=document.querySelectorAll('.product-card');
-        product.forEach(prod=>prod.addEventListener('click',openproductData));
-        /* fin add event listener */
+            `).join('')}
+            `;
+            /* adding event listener */
+            product_object.innerHTML=producto;
+            const product=document.querySelectorAll('.product');
+            const addcart=document.querySelectorAll('.add-cart');
+            product.forEach(prod=>prod.addEventListener('click',openproductData));
+            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            /* fin add event listener */
         
     } catch(error){
         alert("something wrong")
@@ -104,26 +142,28 @@ async function fetchelectronics(){
         let producto=`
         ${products.map(
             
-        prodct=>`
-        <div class="product-card" id="${prodct.id}">
-            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
-            <div class="product-info">
-            <div>
-                <p>$${prodct.price}</p>
-                <p>${prodct.title}</p>
+            prodct=>`
+            <div class="product-card" >
+                <img src=${prodct.images[0]} alt="${prodct.title}" class="product" id="${prodct.id}">
+                <div class="product-info">
+                <div>
+                    <p>$${prodct.price}</p>
+                    <p>${prodct.title}</p>
+                </div>
+                <figure class="add-cart" id="${prodct.id}D">
+                    <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+                </figure>
+                </div>
             </div>
-            <figure>
-                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
-            </figure>
-            </div>
-        </div>
-        `).join('')}
-        `;
-        /* adding event listener */
-        product_object.innerHTML=producto;
-        const product=document.querySelectorAll('.product-card');
-        product.forEach(prod=>prod.addEventListener('click',openproductData));
-        /* fin add event listener */
+            `).join('')}
+            `;
+            /* adding event listener */
+            product_object.innerHTML=producto;
+            const product=document.querySelectorAll('.product');
+            const addcart=document.querySelectorAll('.add-cart');
+            product.forEach(prod=>prod.addEventListener('click',openproductData));
+            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            /* fin add event listener */
         
     } catch(error){
         alert("something wrong")
@@ -136,26 +176,28 @@ async function fetchfurniture(){
         let producto=`
         ${products.map(
             
-        prodct=>`
-        <div class="product-card" id="${prodct.id}">
-            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
-            <div class="product-info">
-            <div>
-                <p>$${prodct.price}</p>
-                <p>${prodct.title}</p>
+            prodct=>`
+            <div class="product-card" >
+                <img src=${prodct.images[0]} alt="${prodct.title}" class="product" id="${prodct.id}">
+                <div class="product-info">
+                <div>
+                    <p>$${prodct.price}</p>
+                    <p>${prodct.title}</p>
+                </div>
+                <figure class="add-cart" id="${prodct.id}D">
+                    <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+                </figure>
+                </div>
             </div>
-            <figure>
-                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
-            </figure>
-            </div>
-        </div>
-        `).join('')}
-        `;
-        /* adding event listener */
-        product_object.innerHTML=producto;
-        const product=document.querySelectorAll('.product-card');
-        product.forEach(prod=>prod.addEventListener('click',openproductData));
-        /* fin add event listener */
+            `).join('')}
+            `;
+            /* adding event listener */
+            product_object.innerHTML=producto;
+            const product=document.querySelectorAll('.product');
+            const addcart=document.querySelectorAll('.add-cart');
+            product.forEach(prod=>prod.addEventListener('click',openproductData));
+            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            /* fin add event listener */
         
     } catch(error){
         alert("something wrong")
@@ -168,26 +210,28 @@ async function fetchtoys(){
         let producto=`
         ${products.map(
             
-        prodct=>`
-        <div class="product-card" id="${prodct.id}">
-            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
-            <div class="product-info">
-            <div>
-                <p>$${prodct.price}</p>
-                <p>${prodct.title}</p>
+            prodct=>`
+            <div class="product-card" >
+                <img src=${prodct.images[0]} alt="${prodct.title}" class="product" id="${prodct.id}">
+                <div class="product-info">
+                <div>
+                    <p>$${prodct.price}</p>
+                    <p>${prodct.title}</p>
+                </div>
+                <figure class="add-cart" id="${prodct.id}D">
+                    <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+                </figure>
+                </div>
             </div>
-            <figure>
-                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
-            </figure>
-            </div>
-        </div>
-        `).join('')}
-        `;
-        /* adding event listener */
-        product_object.innerHTML=producto;
-        const product=document.querySelectorAll('.product-card');
-        product.forEach(prod=>prod.addEventListener('click',openproductData));
-        /* fin add event listener */
+            `).join('')}
+            `;
+            /* adding event listener */
+            product_object.innerHTML=producto;
+            const product=document.querySelectorAll('.product');
+            const addcart=document.querySelectorAll('.add-cart');
+            product.forEach(prod=>prod.addEventListener('click',openproductData));
+            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            /* fin add event listener */
         
     } catch(error){
         alert("something wrong")
@@ -201,37 +245,41 @@ async function fetchothers(){
         ${products.map(
             
         prodct=>`
-        <div class="product-card" id="${prodct.id}">
-            <img src=${prodct.images[0]} alt="${prodct.title}" class="product">
+        <div class="product-card" >
+            <img src=${prodct.images[0]} alt="${prodct.title}" class="product" id="${prodct.id}">
             <div class="product-info">
             <div>
                 <p>$${prodct.price}</p>
                 <p>${prodct.title}</p>
             </div>
-            <figure>
-                <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
-            </figure>
+            <figure class="add-cart" id="${prodct.id}D">
+                    <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
+                </figure>
+                </div>
             </div>
-        </div>
-        `).join('')}
-        `;
-        /* adding event listener */
-        product_object.innerHTML=producto;
-        const product=document.querySelectorAll('.product-card');
-        product.forEach(prod=>prod.addEventListener('click',openproductData));
-        /* fin add event listener */
+            `).join('')}
+            `;
+            /* adding event listener */
+            product_object.innerHTML=producto;
+            const product=document.querySelectorAll('.product');
+            const addcart=document.querySelectorAll('.add-cart');
+            product.forEach(prod=>prod.addEventListener('click',openproductData));
+            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            /* fin add event listener */
         
     } catch(error){
         alert("something wrong")
     }
 };
-fetchall()
+
 /* fin variable API */
 
 arrowdown.addEventListener("click",togledesktopMenu);
 email.addEventListener('click',togledesktopMenu);
 carritocompra.addEventListener('click',togglelistacarrito)
 mobilemenuicon.addEventListener('click',togglemenumobile);
+
+
 
 /* listeners for categories */
     all.addEventListener('click',fetchall);
@@ -242,6 +290,105 @@ mobilemenuicon.addEventListener('click',togglemenumobile);
     others.addEventListener('click',fetchothers);
 /* end listeners for categories */
 
+async function addtocart(){
+
+    let id=this.id;
+    let trueid=id.replace(id[id.length-1],'');
+    
+
+    let info2 = await fetchproducts(`${API}/${trueid}`)
+
+    class cartobject{
+        constructor(img,name,price,idclsb){
+            this.img=img,
+            this.name=name,
+            this.price=price
+            this.idclsb=idclsb
+        }
+    }
+    info2= new cartobject(info2.images[0],info2.title,info2.price,info2.id);
+
+    
+    arrcartobject.push(info2)
+    console.log(arrcartobject)
+
+
+
+    
+    data2=`
+    ${arrcartobject.map(
+        
+        object=>
+        `
+        <div class="shopping-cart" id="${object.idclsb}X2">
+        <figure>
+            <img src="${object.img}" alt="${object.name}">
+        </figure>
+        <p>${object.name}</p>
+        <p class="cart-price">$${object.price}</p>
+        <img src="./assets/icons/icon_close.png" id="${object.idclsb}X" class="delete-cart" alt="close">
+        </div>
+        `
+        
+    ).join('')}
+    `
+    
+    productdetail.innerHTML=data2;
+
+    const deletecart=document.querySelectorAll('.delete-cart')
+    deletecart.forEach(dlt=>dlt.addEventListener('click',deletecartproduct))
+    
+        cartnumber()
+        totalprice()
+
+}
+
+function deletecartproduct(){
+    id = this.id
+    let trueid=id.replace('X','');
+    console.log(trueid)
+
+    document.getElementById(trueid+'X2').remove(); 
+    let eliminatedobject=arrcartobject.find(item=>item.idclsb==trueid);
+    console.log(eliminatedobject)
+    let eliminatedindex=arrcartobject.indexOf(eliminatedobject);
+    console.log(eliminatedindex)
+    
+    arrcartobject.splice(eliminatedindex,1);
+    console.log('eliminando el objeto '+eliminatedobject+'de la posicion'+eliminatedindex)
+    console.log(arrcartobject)
+
+    cartnumber()
+    totalprice()
+
+}
+
+
+function totalprice(){
+ 
+
+ let prices=document.querySelectorAll('.cart-price');
+ let costs=[]
+ prices.forEach(price=>
+    costs.push(price.innerHTML))
+
+    numbercost=[]
+    costs.forEach(cost=>
+        numbercost.push(Number(cost.replace('$',''))))
+    
+        console.log(numbercost)
+
+    var total=numbercost.reduce((a,b)=>a+b,0)
+
+    totalcost.innerHTML='$'+total
+
+} 
+
+
+function cartnumber(){
+    const cartamount=document.getElementById('cart-amount')
+    cartamount.innerHTML=arrcartobject.length
+}
 
 function togledesktopMenu(){
     desktopMenu.classList.toggle('inactive');
@@ -271,7 +418,7 @@ async function openproductData(){
         <p>$${info.price}</p>
         <p>${info.title}</p>
         <p>${info.description}</p>
-        <button class="primary-button add-to-cart-button">
+        <button class="primary-button add-to-cart-button" id="${info.id}B">
             <img src="./assets/icons/bt_add_to_cart.svg" alt="addtocart">
             Add to cart
         </button>
@@ -280,7 +427,11 @@ async function openproductData(){
     productData.innerHTML=data;
     const closeButton=document.querySelector('.close-button')
     closeButton.addEventListener('click',closeproductData);
-   /*  añadiendo escuchas(necesita ser despues de generarlo con el valor data o sino no crossOriginIsolated,ambos inicializacion,declaracion de variable closebutton y despues adicion de escucha */
+   /*  añadiendo escuchas(necesita ser despues de generarlo con el valor data o sino no capta,ambos inicializacion,declaracion de variable closebutton y despues adicion de escucha */
     productData.classList.remove('inactive');
     mobilemenu.classList.add('inactive')
+
+    const addtocart2=document.querySelectorAll('.add-to-cart-button');
+    addtocart2.forEach(addtcrt2=>addtcrt2.addEventListener('click',addtocart))
 }
+
