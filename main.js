@@ -136,8 +136,8 @@ async function fetchclothes(){
             product_object.innerHTML=producto;
             const product=document.querySelectorAll('.product');
             const addcart=document.querySelectorAll('.add-cart');
-            product.forEach(prod=>prod.addEventListener('click',openproductData));
-            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            product.forEach(prod=>{prod.addEventListener('click',openproductData),prod.addEventListener('touch',openproductData)});
+            addcart.forEach(addcrt=>{addcrt.addEventListener('click',addtocart),addcrt.addEventListener('touch',addtocart)});
             /* fin add event listener */
         
     } catch(error){
@@ -170,8 +170,8 @@ async function fetchelectronics(){
             product_object.innerHTML=producto;
             const product=document.querySelectorAll('.product');
             const addcart=document.querySelectorAll('.add-cart');
-            product.forEach(prod=>prod.addEventListener('click',openproductData));
-            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            product.forEach(prod=>{prod.addEventListener('click',openproductData),prod.addEventListener('touch',openproductData)});
+            addcart.forEach(addcrt=>{addcrt.addEventListener('click',addtocart),addcrt.addEventListener('touch',addtocart)});
             /* fin add event listener */
         
     } catch(error){
@@ -204,8 +204,8 @@ async function fetchfurniture(){
             product_object.innerHTML=producto;
             const product=document.querySelectorAll('.product');
             const addcart=document.querySelectorAll('.add-cart');
-            product.forEach(prod=>prod.addEventListener('click',openproductData));
-            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            product.forEach(prod=>{prod.addEventListener('click',openproductData),prod.addEventListener('touch',openproductData)});
+            addcart.forEach(addcrt=>{addcrt.addEventListener('click',addtocart),addcrt.addEventListener('touch',addtocart)});
             /* fin add event listener */
         
     } catch(error){
@@ -238,8 +238,8 @@ async function fetchtoys(){
             product_object.innerHTML=producto;
             const product=document.querySelectorAll('.product');
             const addcart=document.querySelectorAll('.add-cart');
-            product.forEach(prod=>prod.addEventListener('click',openproductData));
-            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            product.forEach(prod=>{prod.addEventListener('click',openproductData),prod.addEventListener('touch',openproductData)});
+            addcart.forEach(addcrt=>{addcrt.addEventListener('click',addtocart),addcrt.addEventListener('touch',addtocart)});
             /* fin add event listener */
         
     } catch(error){
@@ -272,8 +272,8 @@ async function fetchothers(){
             product_object.innerHTML=producto;
             const product=document.querySelectorAll('.product');
             const addcart=document.querySelectorAll('.add-cart');
-            product.forEach(prod=>prod.addEventListener('click',openproductData));
-            addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            product.forEach(prod=>{prod.addEventListener('click',openproductData),prod.addEventListener('touch',openproductData)});
+            addcart.forEach(addcrt=>{addcrt.addEventListener('click',addtocart),addcrt.addEventListener('touch',addtocart)});
             /* fin add event listener */
         
     } catch(error){
@@ -285,9 +285,13 @@ async function fetchothers(){
 
 arrowdown.addEventListener("click",togledesktopMenu);
 email.addEventListener('click',togledesktopMenu);
-carritocompra.addEventListener('click',togglelistacarrito)
+carritocompra.addEventListener('click',togglelistacarrito);
 mobilemenuicon.addEventListener('click',togglemenumobile);
 
+arrowdown.addEventListener("touch",togledesktopMenu);
+email.addEventListener('touch',togledesktopMenu);
+carritocompra.addEventListener('touch',togglelistacarrito);
+mobilemenuicon.addEventListener('touch',togglemenumobile);
 
 
 /* listeners for categories */
@@ -366,7 +370,7 @@ async function addtocart(){
     productdetail.innerHTML=data2;
 
     const deletecart=document.querySelectorAll('.delete-cart')
-    deletecart.forEach(dlt=>dlt.addEventListener('click',deletecartproduct))
+    deletecart.forEach(dlt=>{dlt.addEventListener('click',deletecartproduct),dlt.addEventListener('touch',deletecartproduct)})
     
         cartnumber()
         totalprice()
@@ -455,11 +459,12 @@ async function openproductData(){
     productData.innerHTML=data;
     const closeButton=document.querySelector('.close-button')
     closeButton.addEventListener('click',closeproductData);
+    closeButton.addEventListener('touch',closeproductData);
    /*  añadiendo escuchas(necesita ser despues de generarlo con el valor data o sino no capta,ambos inicializacion,declaracion de variable closebutton y despues adicion de escucha */
     productData.classList.remove('inactive');
     mobilemenu.classList.add('inactive')
 
     const addtocart2=document.querySelectorAll('.add-to-cart-button');
-    addtocart2.forEach(addtcrt2=>addtcrt2.addEventListener('click',addtocart))
+    addtocart2.forEach(addtcrt2=>{addtcrt2.addEventListener('click',addtocart),addtcrt2.addEventListener('touch',addtocart)})
 }
 
