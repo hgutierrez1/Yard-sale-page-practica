@@ -40,6 +40,13 @@ const electronics=document.querySelector('#electronics');
 const furniture=document.querySelector('#furniture');
 const toys=document.querySelector('#toys');
 const others=document.querySelector('#others');
+
+const allmobile=document.querySelector('#allmobile');
+const clothesmobile=document.querySelector('#clothesmobile');
+const electronicsmobile=document.querySelector('#electronicsmobile');
+const furnituremobile=document.querySelector('#furnituremobile');
+const toysmobile=document.querySelector('#toysmobile');
+const othersmobile=document.querySelector('#othersmobile');
 /* end var for listeners for categories */
 
 /*fetch for ALL category,starting one */
@@ -290,6 +297,27 @@ mobilemenuicon.addEventListener('click',togglemenumobile);
     furniture.addEventListener('click',fetchfurniture);
     toys.addEventListener('click',fetchtoys);
     others.addEventListener('click',fetchothers);
+    
+    allmobile.addEventListener('click',fetchall);
+    clothesmobile.addEventListener('click',fetchclothes);
+    electronicsmobile.addEventListener('click',fetchelectronics);
+    furnituremobile.addEventListener('click',fetchfurniture);
+    toysmobile.addEventListener('click',fetchtoys);
+    othersmobile.addEventListener('click',fetchothers);
+
+    all.addEventListener('touch',fetchall);
+    clothes.addEventListener('touch',fetchclothes);
+    electronics.addEventListener('touch',fetchelectronics);
+    furniture.addEventListener('touch',fetchfurniture);
+    toys.addEventListener('touch',fetchtoys);
+    others.addEventListener('touch',fetchothers);
+    
+    allmobile.addEventListener('touch',fetchall);
+    clothesmobile.addEventListener('touch',fetchclothes);
+    electronicsmobile.addEventListener('touch',fetchelectronics);
+    furnituremobile.addEventListener('touch',fetchfurniture);
+    toysmobile.addEventListener('touch',fetchtoys);
+    othersmobile.addEventListener('touch',fetchothers);
 /* end listeners for categories */
 
 async function addtocart(){
