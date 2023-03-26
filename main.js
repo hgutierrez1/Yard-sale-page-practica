@@ -89,6 +89,8 @@ async function fetchall(){
             const addcart=document.querySelectorAll('.add-cart');
             product.forEach(prod=>prod.addEventListener('click',openproductData));
             addcart.forEach(addcrt=>addcrt.addEventListener('click',addtocart));
+            product.forEach(prod=>prod.addEventListener('touch',openproductData));
+            addcart.forEach(addcrt=>addcrt.addEventListener('touch',addtocart));
             /* fin add event listener */
 
         
@@ -310,7 +312,7 @@ async function addtocart(){
 
     
     arrcartobject.push(info2)
-    console.log(arrcartobject)
+
 
 
 
@@ -346,18 +348,16 @@ async function addtocart(){
 function deletecartproduct(){
     id = this.id
     let trueid=id.replace('X','');
-    console.log(trueid)
+
 
     document.getElementById(trueid+'X2').remove(); 
     let eliminatedobject=arrcartobject.find(item=>item.idclsb==trueid);
-    console.log(eliminatedobject)
+
     let eliminatedindex=arrcartobject.indexOf(eliminatedobject);
-    console.log(eliminatedindex)
+
     
     arrcartobject.splice(eliminatedindex,1);
-    console.log('eliminando el objeto '+eliminatedobject+'de la posicion'+eliminatedindex)
-    console.log(arrcartobject)
-
+    
     cartnumber()
     totalprice()
 
