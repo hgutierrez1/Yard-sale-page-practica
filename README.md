@@ -9,5 +9,9 @@ Posibles actualizaciones:
 Implementar la funcionalidad del login y creación de cuentas via redirigirlos a otra página(en cuanto aprenda como hacerlo :) ).
 Cambiar de fuente para obtener productos que tengan mas sentido.
 
+Actualización:
+
+Decidí combinar las actualizaciónes a este proyecto con el apredizaje de otra herramienta(React) y como resultado realizé u nuevo proyecto que se encuentra aquí.
+https://github.com/hgutierrez1/shop-react-vite
 
 
